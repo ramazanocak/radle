@@ -53,8 +53,7 @@
   body {
     margin:0; background:var(--ground); color:var(--ink);
     font-family:system-ui,-apple-system,"SF Pro Text","Segoe UI",sans-serif;
-    font-size:16px; line-height:1.5;
-    -webkit-font-smoothing:antialiased;
+    font-size:16px; line-height:1.5; -webkit-font-smoothing:antialiased;
     padding:28px 20px 44px;
   }
   .wrap { max-width:440px; margin:0 auto; display:flex; flex-direction:column; gap:26px; }
@@ -78,22 +77,29 @@
     background:var(--surface); border:1px solid var(--line);
     border-radius:var(--r); overflow:hidden; box-shadow:var(--shadow);
   }
-  .offer-go {
-    display:grid; gap:3px; padding:18px 20px 16px;
-    text-decoration:none; color:inherit;
+  .offer-go { display:grid; gap:3px; padding:18px 20px 16px;
+    text-decoration:none; color:inherit; }
+  .offer-plan { font-size:12px; font-weight:800; letter-spacing:1.6px; color:var(--muted); }
+
+  .offer-price {
+    display:flex; align-items:baseline; gap:9px; margin-top:5px;
+    font-variant-numeric:tabular-nums;
   }
-  .offer-plan { font-size:12px; font-weight:800; letter-spacing:1.6px;
-    text-transform:uppercase; color:var(--muted); }
+  .offer-price s { font-size:17px; font-weight:600; color:var(--muted);
+    text-decoration-thickness:1.5px; }
+  .offer-price strong { font-size:31px; font-weight:850; letter-spacing:-.8px;
+    line-height:1; color:var(--accent); }
+  .offer-price em { font-size:14px; font-style:normal; font-weight:600; color:var(--muted); }
+
+  .offer-term { font-size:13.5px; color:var(--muted); margin-top:3px; }
   .offer-code {
     font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
-    font-size:27px; font-weight:700; letter-spacing:-.4px; margin-top:2px;
+    font-size:23px; font-weight:700; letter-spacing:-.3px; margin-top:11px;
   }
-  .offer-term { font-size:13.5px; color:var(--muted); }
-  .offer-cta { margin-top:9px; font-size:14.5px; font-weight:700; color:var(--accent); }
+  .offer-cta { margin-top:7px; font-size:14.5px; font-weight:700; color:var(--accent); }
   .offer-copy {
-    width:100%; border:0; border-top:1px solid var(--line);
-    background:transparent; color:var(--muted);
-    font:inherit; font-size:13.5px; font-weight:600;
+    width:100%; border:0; border-top:1px solid var(--line); background:transparent;
+    color:var(--muted); font:inherit; font-size:13.5px; font-weight:600;
     padding:12px; cursor:pointer; text-align:center;
   }
   .offer-copy:hover { background:var(--surface-2); color:var(--ink); }
@@ -102,7 +108,9 @@
   .is-lead { background:var(--accent); border-color:transparent; }
   .is-lead .offer-plan { color:color-mix(in srgb, var(--accent-ink) 74%, transparent); }
   .is-lead .offer-code, .is-lead .offer-cta { color:var(--accent-ink); }
-  .is-lead .offer-term { color:color-mix(in srgb, var(--accent-ink) 82%, transparent); }
+  .is-lead .offer-price strong { color:var(--accent-ink); }
+  .is-lead .offer-price s, .is-lead .offer-price em,
+  .is-lead .offer-term { color:color-mix(in srgb, var(--accent-ink) 78%, transparent); }
   .is-lead .offer-copy {
     color:color-mix(in srgb, var(--accent-ink) 80%, transparent);
     border-top-color:color-mix(in srgb, var(--accent-ink) 26%, transparent);
@@ -112,20 +120,17 @@
     color:var(--accent-ink);
   }
 
-  a:focus-visible, button:focus-visible {
-    outline:2.5px solid var(--accent); outline-offset:2px;
-  }
+  a:focus-visible, button:focus-visible { outline:2.5px solid var(--accent); outline-offset:2px; }
 
   .steps { display:flex; flex-direction:column; gap:11px; }
   .steps h2 { margin:0 0 3px; font-size:12px; font-weight:800; letter-spacing:1.6px;
-    text-transform:uppercase; color:var(--muted); }
+    color:var(--muted); }
   .step { display:flex; gap:12px; align-items:flex-start; font-size:14.5px; }
   .step i {
     flex:none; width:22px; height:22px; border-radius:50%;
     background:var(--accent-soft); color:var(--accent);
     font-style:normal; font-size:12px; font-weight:800;
-    display:grid; place-items:center; margin-top:1px;
-    font-variant-numeric:tabular-nums;
+    display:grid; place-items:center; margin-top:1px; font-variant-numeric:tabular-nums;
   }
   .fine { font-size:12.5px; color:var(--muted); line-height:1.6; }
 </style>
@@ -144,9 +149,14 @@
   <ul>
       <li class="offer is-lead">
         <a class="offer-go" href="https://apps.apple.com/redeem?ctx=offercodes&amp;id=6758636742&amp;code=BEBEK25">
-          <span class="offer-plan">Yıllık</span>
-          <span class="offer-code">BEBEK25</span>
+          <span class="offer-plan">YILLIK</span>
+          <span class="offer-price">
+            <s>₺899,99</s>
+            <strong>₺669,99</strong>
+            <em>/yıl</em>
+          </span>
           <span class="offer-term">1 yıl boyunca indirimli</span>
+          <span class="offer-code">BEBEK25</span>
           <span class="offer-cta">App Store'da kullan <span aria-hidden="true">&rarr;</span></span>
         </a>
         <button class="offer-copy" type="button" data-code="BEBEK25">Kodu kopyala</button>
@@ -154,9 +164,14 @@
 
       <li class="offer">
         <a class="offer-go" href="https://apps.apple.com/redeem?ctx=offercodes&amp;id=6758636742&amp;code=BEBEK25AY">
-          <span class="offer-plan">Aylık</span>
-          <span class="offer-code">BEBEK25AY</span>
+          <span class="offer-plan">AYLIK</span>
+          <span class="offer-price">
+            <s>₺149,99</s>
+            <strong>₺109,99</strong>
+            <em>/ay</em>
+          </span>
           <span class="offer-term">3 ay boyunca indirimli</span>
+          <span class="offer-code">BEBEK25AY</span>
           <span class="offer-cta">App Store'da kullan <span aria-hidden="true">&rarr;</span></span>
         </a>
         <button class="offer-copy" type="button" data-code="BEBEK25AY">Kodu kopyala</button>
@@ -164,9 +179,14 @@
 
       <li class="offer">
         <a class="offer-go" href="https://apps.apple.com/redeem?ctx=offercodes&amp;id=6758636742&amp;code=BEBEK25HAFTA">
-          <span class="offer-plan">Haftalık</span>
-          <span class="offer-code">BEBEK25HAFTA</span>
+          <span class="offer-plan">HAFTALIK</span>
+          <span class="offer-price">
+            <s>₺49,99</s>
+            <strong>₺36,99</strong>
+            <em>/hafta</em>
+          </span>
           <span class="offer-term">12 hafta boyunca indirimli</span>
+          <span class="offer-code">BEBEK25HAFTA</span>
           <span class="offer-cta">App Store'da kullan <span aria-hidden="true">&rarr;</span></span>
         </a>
         <button class="offer-copy" type="button" data-code="BEBEK25HAFTA">Kodu kopyala</button>
@@ -174,16 +194,16 @@
   </ul>
 
   <section class="steps">
-    <h2>Nasıl kullanılır</h2>
+    <h2>NASIL KULLANILIR</h2>
     <div class="step"><i>1</i><span>İstediğin planın kartına dokun.</span></div>
     <div class="step"><i>2</i><span>App Store açılır ve kod otomatik uygulanır.</span></div>
     <div class="step"><i>3</i><span>Onayla — indirimli fiyat aboneliğine yansır.</span></div>
   </section>
 
   <p class="fine">
-    Her plan için ayrı kod geçerlidir. İndirim yalnızca yeni abonelerde ve yukarıda
-    belirtilen süre boyunca uygulanır; süre bitiminde abonelik normal fiyattan yenilenir.
-    Kodlar 15 Ağustos 2027'ye kadar geçerlidir.
+    Fiyatlar Türkiye App Store'u içindir. Her plan için ayrı kod geçerlidir; indirim
+    yalnızca yeni abonelerde ve belirtilen süre boyunca uygulanır, süre bitiminde
+    abonelik normal fiyattan yenilenir. Kodlar 15 Ağustos 2027'ye kadar geçerlidir.
   </p>
 </div>
 
